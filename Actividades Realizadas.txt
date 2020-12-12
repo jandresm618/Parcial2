@@ -2,5 +2,5 @@
 10:20 - 10:40 Recoleccion de informacion para la solucion del problema
 10:40 - 11:00 Proponer Soluciones
 11:00 - 11:20 Completar solcuiones
-
+11:20 - 11:40 Empezar Definicion de las clases
 
