@@ -8,5 +8,7 @@
 12:20 - 12:40 Definicion Segunda Clase
 12:40 - 13:00 Quehaceres y Definicion Clase cañon
 13:00 - 13:20 Definicion del resto de clases
+13:20 - 13:40 Definir los casos de la clase Escenario
+13:40 - 12:00 Completar el analisis de los casos
 
 
