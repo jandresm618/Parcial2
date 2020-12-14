@@ -55,7 +55,7 @@ void Escenario::cargarCañones(int opc)
             for(int i = 0;i<3;i++,itLD++){
                 angulo = (*itLD).second.at(3);
                 v0 = (*itLD).second.at(4);
-                proyectilDefensivo = new Proyectil(xo,yo,angulo,v0,d,fIO,DT);
+                proyectilDefensivo = new Proyectil(xd,yd,angulo,v0,d,fIO,DT);
                 proyectilesDef.push_back(proyectilDefensivo);
             }
             break;
