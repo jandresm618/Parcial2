@@ -69,6 +69,9 @@ int main()
         cout<<"Ingrese la posicion en y ofensiva: "<<endl;
         cin>>yf;
         escena= Escenario(xo,yo,xf,yf);
+        cout<<"-----------------------------------------------------"<<endl;
+        cout<<"CAÑONES CARGADOS Y LISTOS PARA ATACAR"<<endl;
+        cout<<"-----------------------------------------------------"<<endl;
         while (vOpc != 0){
             cout<<"SELECCIONE EL CASO A CALIFICAR"<<endl;
             cout<<"1."<<endl;
