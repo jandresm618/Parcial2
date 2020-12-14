@@ -140,6 +140,7 @@ void Escenario::accion(int timeTotal)
     float time = 0,cont = 0;
     for(int i=0;i<timeTotal;i++){
         time = time + DT;
+        if(proyectilesDef.empty() || proyectilesOf.empty()) break;
         for(itO=proyectilesOf.begin(),cont = 0;itO!=proyectilesOf.end();itO++,cont++){
             if(time >= cont) (*itO)->actualizar(DT);
         }

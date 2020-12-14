@@ -3,11 +3,11 @@
 
 int main()
 {
-    int vOpc = 0;
+    int vOpc = 1;
     float xo = 0, yo=0;
     float xf = 800,yf = 100;
 
-    Escenario escena;
+    Escenario *escena;
 
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"BIENVENIDO A LA GUERRA ENTRE TURQUIA Y RUSIA"<<endl;
@@ -20,7 +20,7 @@ int main()
 
     switch (vOpc) {
     case 1:
-        escena= Escenario(xo,yo,xf,yf);
+        escena= new Escenario(xo,yo,xf,yf);
         while (vOpc != 0){
             cout<<"SELECCIONE EL CASO A CALIFICAR"<<endl;
             cout<<"1."<<endl;
@@ -32,24 +32,24 @@ int main()
             cin>>vOpc;
             switch (vOpc) {
             case 1:
-                escena.cargarCañones(1);
-                escena.accion(480);
+                escena->cargarCañones(1);
+                escena->accion(480);
             break;
             case 2:
-                escena.cargarCañones(2);
-                escena.accion(480);
+                escena->cargarCañones(2);
+                escena->accion(480);
             break;
             case 3:
-                escena.cargarCañones(3);
-                escena.accion(480);
+                escena->cargarCañones(3);
+                escena->accion(480);
             break;
             case 4:
-                escena.cargarCañones(4);
-                escena.accion(480);
+                escena->cargarCañones(4);
+                escena->accion(480);
             break;
             case 5:
-                escena.cargarCañones(5);
-                escena.accion(480);
+                escena->cargarCañones(5);
+                escena->accion(480);
             break;
             default:
                 cout<<"SALIENDOOO..."<<endl;
@@ -68,7 +68,7 @@ int main()
         cin>>xf;
         cout<<"Ingrese la posicion en y ofensiva: "<<endl;
         cin>>yf;
-        escena= Escenario(xo,yo,xf,yf);
+        escena=  new Escenario(xo,yo,xf,yf);
         cout<<"-----------------------------------------------------"<<endl;
         cout<<"CAÑONES CARGADOS Y LISTOS PARA ATACAR"<<endl;
         cout<<"-----------------------------------------------------"<<endl;
@@ -83,24 +83,24 @@ int main()
             cin>>vOpc;
             switch (vOpc) {
             case 1:
-                escena.cargarCañones(1);
-                escena.accion(480);
+                escena->cargarCañones(1);
+                escena->accion(480);
             break;
             case 2:
-                escena.cargarCañones(2);
-                escena.accion(480);
+                escena->cargarCañones(2);
+                escena->accion(480);
             break;
             case 3:
-                escena.cargarCañones(3);
-                escena.accion(480);
+                escena->cargarCañones(3);
+                escena->accion(480);
             break;
             case 4:
-                escena.cargarCañones(4);
-                escena.accion(480);
+                escena->cargarCañones(4);
+                escena->accion(480);
             break;
             case 5:
-                escena.cargarCañones(5);
-                escena.accion(480);
+                escena->cargarCañones(5);
+                escena->accion(480);
             break;
             default:
                 cout<<"SALIENDOOO..."<<endl;
