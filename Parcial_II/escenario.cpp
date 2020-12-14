@@ -36,7 +36,7 @@ void Escenario::cargarCañones(int opc)
             cout<<endl<<"----------------------------"<<endl;
             cout<<"CASO 1 --> 3 DISPAROS OFENSIVOS HACIA CAÑON DEFENSIVO ."<<endl;
             cout<<"----------------------------"<<endl;
-            cargarCoordenadasOfensivas(1); //Se cargan 3 disparos con coordenadas por defecto;
+            cargarCoordenadasOfensivas(2); //Se cargan 3 disparos con coordenadas por defecto;
             itLO = lanzamientosOfensivos.begin();
             for(int i = 0;i<3;i++,itLO++){
                 angulo = (*itLO).second.at(3);
@@ -50,7 +50,7 @@ void Escenario::cargarCañones(int opc)
             cout<<endl<<"----------------------------"<<endl;
             cout<<"CASO 2 --> 3 DISPAROS DEFENSIVOS HACIA CAÑON OFENSIVO."<<endl;
             cout<<"----------------------------"<<endl;
-            cargarCoordenadasDefensivas(1); //Se cargan 3 disparos con coordenadas por defecto;
+            cargarCoordenadasDefensivas(2); //Se cargan 3 disparos con coordenadas por defecto;
             itLD = lanzamientosDefensivos.begin();
             for(int i = 0;i<3;i++,itLD++){
                 angulo = (*itLD).second.at(3);
@@ -90,9 +90,10 @@ void Escenario::cargarCañones(int opc)
             v0 = (*itLO).second.at(4);
             proyectilOfensivo = new Proyectil(xo,yo,angulo,v0,d,fIO,DT);
             proyectilesOf.push_back(proyectilOfensivo);
-            cargarCoordenadasDefensivas(1); //Se cargan 3 disparos con coordenadas con resticcion de que no choquen al enemigo;
-            itLD = lanzamientosDefensivos.begin();
-            for(int i = 0;i<3;i++,itLD++){
+            cargarCoordenadasDefensivas(3); //Se cargan 3 disparos con coordenadas con resticcion de que no choquen al enemigo;
+            itLD = lanzamientosDefensivos.end();
+            itLD--;
+            for(int i = 0;i<3;i++,--itLD){
                 angulo = (*itLD).second.at(3);
                 v0 = (*itLD).second.at(4);
                 proyectilDefensivo = new Proyectil(xd,yd,angulo,v0,d,fIO,DT);
@@ -140,7 +141,9 @@ void Escenario::accion(int timeTotal)
     float time = 0,cont = 0;
     for(int i=0;i<timeTotal;i++){
         time = time + DT;
-        //if(proyectilesDef.empty() || proyectilesOf.empty()) break;
+
+        cout<<"Tiempo Recorrido: "<<time<<endl;
+        if(proyectilesDef.empty() && proyectilesOf.empty()) break;
         for(itO=proyectilesOf.begin(),cont = 0;itO!=proyectilesOf.end();itO++,cont++){
             if(time >= cont) (*itO)->actualizar(DT);
         }

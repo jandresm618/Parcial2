@@ -21,6 +21,9 @@ int main()
     switch (vOpc) {
     case 1:
         escena= new Escenario(xo,yo,xf,yf);
+        cout<<"-----------------------------------------------------"<<endl;
+        cout<<"CAÑONES CARGADOS Y LISTOS PARA ATACAR"<<endl;
+        cout<<"-----------------------------------------------------"<<endl;
         while (vOpc != 0){
             cout<<"SELECCIONE EL CASO A CALIFICAR"<<endl;
             cout<<"SE RECOMIENDA UTILIZAR EL DEBUGGER PARA VERIFICAR CADA PASO."<<endl;

@@ -18,6 +18,7 @@ private:
     float vx,vy;
     float ax,ay;
     float d,factorImpacto;
+    int cont =0;
 };
 
 #endif // PROYECTIL_H

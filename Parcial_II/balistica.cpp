@@ -62,7 +62,6 @@ void Balistica::fasterShots()
             bestShots.insert(pair<int,vector<float>>(cont,it->second));
         }
     }
-    cout<<"Tamaño de la lista"<<bestShots.size();
 }
 
 void Balistica::slowerShots()
