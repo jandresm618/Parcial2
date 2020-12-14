@@ -23,6 +23,7 @@ int main()
         escena= new Escenario(xo,yo,xf,yf);
         while (vOpc != 0){
             cout<<"SELECCIONE EL CASO A CALIFICAR"<<endl;
+            cout<<"SE RECOMIENDA UTILIZAR EL DEBUGGER PARA VERIFICAR CADA PASO."<<endl;
             cout<<"1."<<endl;
             cout<<"2."<<endl;
             cout<<"3."<<endl;
