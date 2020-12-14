@@ -19,6 +19,8 @@ public:
     void printBest();
 
 
+    map<int, vector<float> > getBestShots() const;
+
 private:
     Movimiento *simulador;
     int tInfiltrado;

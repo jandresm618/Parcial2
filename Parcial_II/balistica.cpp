@@ -18,6 +18,17 @@ Balistica::~Balistica()
 void Balistica::alertaMisil(float xf, float yf, float angulo, float v0, float d, float factorImpacto)
 {
     //Funcion Encargada de Calcular la posicion del enemigo para interceptarlo
+    fasterShots();
+    for(it=bestShots.begin();it!=bestShots.end();it++){
+        cout<<"Disparo "<<it->first<<endl;
+        cout<<"--------------------------------"<<endl;
+        cout<<"Posicion: "<<"("<<it->second.at(0)<<", "<<it->second.at(1)<<")"<<endl;
+        cout<<"Tiempo: "<<it->second.at(2)<<endl;
+        cout<<"Angulo: "<<it->second.at(3)<<endl;
+        cout<<"Velocidad: "<<it->second.at(4)<<endl;
+        cout<<"--------------------------------"<<endl;
+    }
+
 }
 
 void Balistica::defaultShots()
@@ -36,12 +47,22 @@ void Balistica::fasterShots()
     float faster = 0;
     bestShots.clear();
     for(it=lanzamientos.begin();it!=lanzamientos.end();it++,cont++){
-        if(cont ==0 )faster = it->second.at(2);
+        if(cont ==0 ){
+            faster = it->second.at(2);
+            bestShots.insert(pair<int,vector<float>>(cont,it->second));
+        }
         else if(it->second.at(2) < faster){
             faster = it->second.at(2);
             bestShots.insert(pair<int,vector<float>>(cont,it->second));
         }
+        else if(cont == 1){
+            bestShots.insert(pair<int,vector<float>>(cont,it->second));
+        }
+        else if(cont == 2){
+            bestShots.insert(pair<int,vector<float>>(cont,it->second));
+        }
     }
+    cout<<"Tamaño de la lista"<<bestShots.size();
 }
 
 void Balistica::slowerShots()
@@ -69,4 +90,9 @@ void Balistica::printBest()
         cout<<"Velocidad: "<<it->second.at(4)<<endl;
         cout<<"--------------------------------"<<endl;
     }
+}
+
+map<int, vector<float> > Balistica::getBestShots() const
+{
+    return bestShots;
 }

@@ -18,6 +18,7 @@ public:
     void actualizar(float dt);
     bool nParabolicos(float xf,float yf, float d, float factorImpacto);
     bool parabolico(float xf,float yf,int _v0,int _angle,float d, float factorImpacto);
+    vector<float> parabolico(float timeStop,float x, float y,int _v0,int _angle);
 
     float tiempoParabolico(float xf,float yf,float _angle,float _v0,float d, float factorImpacto);
     void setParametros(int cont);

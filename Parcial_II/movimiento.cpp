@@ -73,10 +73,24 @@ bool Movimiento::parabolico(float xf, float yf, int _v0,int _angle,float d, floa
     return impacto;
 }
 
-float Movimiento::tiempoParabolico(float xf, float yf, float _angle, float _v0, float d, float factorImpacto)
+vector<float> Movimiento::parabolico(float timeStop,float _x, float _y, int _v0, int _angle)
 {
-
+    vector<float> pos;
+    float dt = 0.1; //Delta de tiempo
+    time = 0;       //Se inicializa el tiempo de lanzamiento en cero
+    x = _x; y = _y;
+    vx = _v0*cos(_angle*pi/180);    //Velocidad inicial de x
+    vy = abs(_v0)*sin(_angle*pi/180) - ay*dt; //Velocidad inicial de y
+    while((y >= 0) || time >= timeStop ){   //Mientras el proyectil este sobre la superficie
+        actualizar(dt); //Actualizar parametros de movimiento
+        time = time + dt;
+    }
+    pos.push_back(x);
+    pos.push_back(y);
+    return pos;
 }
+
+
 
 void Movimiento::setParametros(int cont)
 {

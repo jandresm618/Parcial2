@@ -10,18 +10,28 @@ public:
     Escenario(float xo,float yo,float xd,float yd);
     ~Escenario();
 
-    void accion();
+    void cargarCañones(int opc);
+    void accion(int timeTotal);
+    void cargarCoordenadasOfensivas(int opc);
+    void cargarCoordenadasDefensivas(int opc);
+
     void detectorColisiones();
     void detectorCanonOfHerido();
     void detectorCanonDefHerido();
 
 
-    Proyectil *p1, *p2;
-    Balistica *prueba1;
+    Proyectil *proyectilOfensivo, *proyectilDefensivo;
+    Balistica *cañonOfensivo;
+    Balistica *cañonDefensivo;
     vector<Proyectil*> proyectilesOf;
     vector<Proyectil*> proyectilesDef;
     vector<Proyectil*>::iterator itO;
     vector<Proyectil*>::iterator itD;
+
+    map<int,vector<float>> lanzamientosOfensivos;
+    map<int,vector<float>>::iterator itLO;
+    map<int,vector<float>> lanzamientosDefensivos;
+    map<int,vector<float>>::iterator itLD;
 
     float xo,yo;
     float xd,yd;
