@@ -1,5 +1,10 @@
 #include "movimiento.h"
 
+Movimiento::Movimiento()
+{
+
+}
+
 Movimiento::Movimiento(float x,float y,bool _lado): px(x),py(y),lado(_lado)
 {
 
@@ -10,7 +15,7 @@ void Movimiento::actualizar(float dt)
     ax = 0;  //Aceleracion en Componente x
     ay = G; //Aceleracion en Componente y
 
-    vx = vx;    //Velocidad en Componente x
+    //vx = vx;    //Velocidad en Componente x
     vy = vy - ay*dt;  //Velocidad en Componente y
 
     x = x + vx*dt; //Posicion x
@@ -22,7 +27,6 @@ bool Movimiento::nParabolicos(float xf, float yf, float d, float factorImpacto)
 {
     bool impacto = false; //Bandera que indica si hubo impacto o no
     bool aux=false;       //Variable auxiliar
-    float dt = 0.1;       //Delta de tiempo
     int v0_,angle,cont=0; //Variables Temporales para cada iterador
 
     for(v0_=0;;){
@@ -30,12 +34,11 @@ bool Movimiento::nParabolicos(float xf, float yf, float d, float factorImpacto)
         for( angle= 30; angle< 90; angle++){
             //Iteracion para diferentes valores de Angulo
             x = px; y = py; angulo = angle, v0 = v0_; //Inicializacion de Variables para cada valor de angulo y velocidad
-            vx = v0_*cos(angle*pi/180);    //Velocidad inicial de x
-            vy = abs(v0_)*sin(angle*pi/180) - ay*dt; //Velocidad inicial de y
-            aux = parabolico(xf,yf,d,factorImpacto); //Retorna true si la parabola es efectiva
+            aux = parabolico(xf,yf,v0_,angle,d,factorImpacto); //Retorna true si la parabola es efectiva
             if(aux){
                 // Se ejecuta si y solo si hubo impacto
                 cout<<endl<<"Impacto numero: "<<cont+1<<endl;
+                setParametros(cont);
                 imprimirValoresImpacto(); impacto = true; cont++; break;
             }
         }
@@ -52,20 +55,43 @@ bool Movimiento::nParabolicos(float xf, float yf, float d, float factorImpacto)
     return impacto;
 }
 
-bool Movimiento::parabolico(float xf, float yf, float d, float factorImpacto)
+bool Movimiento::parabolico(float xf, float yf, int _v0,int _angle,float d, float factorImpacto)
 {
     bool impacto = false;
-    float dt = 0.1;
-    time = 0;
-    while((y >= 0) ){
-        actualizar(dt);
+    float dt = 0.1; //Delta de tiempo
+    time = 0;       //Se inicializa el tiempo de lanzamiento en cero
+    vx = _v0*cos(_angle*pi/180);    //Velocidad inicial de x
+    vy = abs(_v0)*sin(_angle*pi/180) - ay*dt; //Velocidad inicial de y
+    while((y >= 0) ){   //Mientras el proyectil este sobre la superficie
+        actualizar(dt); //Actualizar parametros de movimiento
         if(sqrt(pow((xf - x),2)+pow((yf - y),2)) <= factorImpacto*d){
-            impacto=true; break;
+            impacto=true; break; //Impacto si las posiciones estan en el area de explosion
         }
         time = time + dt;
     }
 
     return impacto;
+}
+
+float Movimiento::tiempoParabolico(float xf, float yf, float _angle, float _v0, float d, float factorImpacto)
+{
+
+}
+
+void Movimiento::setParametros(int cont)
+{
+    parametrosLanzamiento.clear();
+    parametrosLanzamiento.push_back(x);
+    parametrosLanzamiento.push_back(y);
+    parametrosLanzamiento.push_back(time);
+    parametrosLanzamiento.push_back(angulo);
+    parametrosLanzamiento.push_back(v0);
+    lanzamientos.insert(pair<int,vector<float>>(cont,parametrosLanzamiento));
+}
+
+map<int, vector<float> > Movimiento::getParametros()
+{
+    return lanzamientos;
 }
 
 void Movimiento::imprimirValoresImpacto()

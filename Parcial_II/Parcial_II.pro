@@ -4,8 +4,14 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        balistica.cpp \
+        escenario.cpp \
         main.cpp \
-        movimiento.cpp
+        movimiento.cpp \
+        proyectil.cpp
 
 HEADERS += \
-    movimiento.h
+    balistica.h \
+    escenario.h \
+    movimiento.h \
+    proyectil.h
